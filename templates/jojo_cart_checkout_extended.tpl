@@ -42,9 +42,9 @@
 
             <label for="shipping_country">Country</label>
             <select size="1" name="shipping_country" id="shipping_country" onchange="updateCountry($(this).val(), 'shipping');">
-{assign var=found value=false}{section name=c loop=$countries}
-                <option value="{$countries[c].code|strtoupper}"{if !$found && $countries[c].code|strtoupper==$fields.shipping_country} selected="selected"{assign var=found value=true}{/if}>{$countries[c].name}</option>
-{/section}
+{assign var=found value=false}{foreach from=$countries item=c}
+                <option value="{$c.code|strtoupper}"{if !$found && $c.code|strtoupper==$fields.shipping_country} selected="selected"{assign var=found value=true}{/if}>{$c.name}</option>
+{/foreach}
             </select> *<br />
 {if $errors.shipping_country}<span class="error">{$errors.shipping_country}</span><br/>{/if}
 
@@ -93,9 +93,9 @@
 
             <label for="billing_country">Country</label>
             <select size="1" name="billing_country" id="billing_country" onchange="updateCountry($(this).val(), 'billing');">
-{assign var=found value=false}{section name=c loop=$countries}
-                <option value="{$countries[c].code|strtoupper}"{if !$found && $countries[c].code|strtoupper==$fields.billing_country} selected="selected"{assign var=found value=true}{/if}>{$countries[c].name}</option>
-{/section}
+{assign var=found value=false}{foreach from=$countries item=c}
+                <option value="{$c.code|strtoupper}"{if !$found && $c.code|strtoupper==$fields.billing_country} selected="selected"{assign var=found value=true}{/if}>{$c.name}</option>
+{/foreach}
             </select> *<br />
 {if $errors.billing_country}<span class="error">{$errors.billing_country}</span><br/>{/if}
 
