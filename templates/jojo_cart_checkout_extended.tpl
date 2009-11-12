@@ -126,7 +126,7 @@
         </div>
 {jojoHook hook="jojo_cart_extra_fields"}
 
-{if !$fields.userid}
+{if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
             <h3>Save your details</h3>
             <label for="create_account">Create account</label>
             <div class="form-field">
