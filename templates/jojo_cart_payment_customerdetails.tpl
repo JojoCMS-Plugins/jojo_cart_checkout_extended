@@ -9,6 +9,7 @@
         {if $fields.shipping_city}{$fields.shipping_city}<br/>{/if}
         {if $fields.shipping_state}{$fields.shipping_state}{/if} {$fields.shipping_postcode}<br/>
         {section name=c loop=$countries}{if !$found && $countries[c].code|strtoupper==$fields.shipping_country}{$countries[c].name}{/if}{/section}
+        {if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
     </div>   
     <div style="float: left; width: 45%;">
         <strong>Billing Address</strong><br/>

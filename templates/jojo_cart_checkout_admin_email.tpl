@@ -18,6 +18,8 @@ Shipping Address
 {/if}
 {section name=c loop=$countries}{if $countries[c].code|strtoupper==$fields.shipping_country}  {$countries[c].name}{/if}{/section}
 
+{if $fields.shipping_special}Special instructions: {$fields.shipping_special}
+{/if}
 
 Billing Address
   {$fields.billing_firstname} {$fields.billing_lastname} {if $fields.billing_email}<{$fields.billing_email}>{/if}
