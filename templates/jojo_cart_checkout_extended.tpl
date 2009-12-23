@@ -29,15 +29,15 @@
             <h3>Shipping Address</h3>
 
             <label for="shipping_firstname">First name</label>
-            <input type="text" size="20" name="shipping_firstname" id="shipping_firstname" value="{$fields.shipping_firstname}" /> *<br />
+            <input type="text" size="20" name="shipping_firstname" id="shipping_firstname" value="{if $fields.shipping_firstname}{$fields.shipping_firstname}{/if}" /> *<br />
 {if $errors.shipping_firstname}<span class="error">{$errors.shipping_firstname}</span><br/>{/if}
 
             <label for="shipping_lastname">Last name</label>
-            <input type="text" size="20" name="shipping_lastname" id="shipping_lastname" value="{$fields.shipping_lastname}" /> *<br />
+            <input type="text" size="20" name="shipping_lastname" id="shipping_lastname" value="{if $fields.shipping_lastname}{$fields.shipping_lastname}{/if}" /> *<br />
 {if $errors.shipping_lastname}<span class="error">{$errors.shipping_lastname}</span><br/>{/if}
 
             <label for="shipping_email">Email</label>
-            <input type="text" size="30" name="shipping_email" id="shipping_email" value="{$fields.shipping_email}" /> *<br />
+            <input type="text" size="30" name="shipping_email" id="shipping_email" value="{if $fields.shipping_email}{$fields.shipping_email}{/if}" /> *<br />
 {if $errors.shipping_email}<span class="error">{$errors.shipping_email}</span><br/>{/if}
 
             <label for="shipping_country">Country</label>
@@ -49,27 +49,27 @@
 {if $errors.shipping_country}<span class="error">{$errors.shipping_country}</span><br/>{/if}
 
             <label for="shipping_state">State</label>
-            <input type="text" size="20" name="shipping_state" id="shipping_state" value="{$fields.shipping_state}" /><br />
+            <input type="text" size="20" name="shipping_state" id="shipping_state" value="{if $fields.shipping_state}{$fields.shipping_state}{/if}" /><br />
 {if $errors.shipping_state}<span class="error">{$errors.shipping_state}</span><br/>{/if}
 
             <label for="shipping_address1">Address 1</label>
-            <input type="text" size="30" name="shipping_address1" id="shipping_address1" value="{$fields.shipping_address1}" /> *<br />
+            <input type="text" size="30" name="shipping_address1" id="shipping_address1" value="{if $fields.shipping_address1}{$fields.shipping_address1}{/if}" /> *<br />
 {if $errors.shipping_address1}<span class="error">{$errors.shipping_address1}</span><br/>{/if}
 
             <label for="shipping_address2">Address 2</label>
-            <input type="text" size="30" name="shipping_address2" id="shipping_address2" value="{$fields.shipping_address2}" /><br />
+            <input type="text" size="30" name="shipping_address2" id="shipping_address2" value="{if $fields.shipping_address2}{$fields.shipping_address2}{/if}" /><br />
 {if $errors.shipping_address2}<span class="error">{$errors.shipping_address2}</span><br/>{/if}
 
             <label for="shipping_suburb">Suburb</label>
-            <input type="text" size="20" name="shipping_suburb" id="shipping_suburb" value="{$fields.shipping_suburb}" /><br />
+            <input type="text" size="20" name="shipping_suburb" id="shipping_suburb" value="{if $fields.shipping_suburb}{$fields.shipping_suburb}{/if}" /><br />
 {if $errors.shipping_suburb}<span class="error">{$errors.shipping_suburb}</span><br/>{/if}
 
             <label for="shipping_city">City</label>
-            <input type="text" size="20" name="shipping_city" id="shipping_city" value="{$fields.shipping_city}" /> *<br />
+            <input type="text" size="20" name="shipping_city" id="shipping_city" value="{if $fields.shipping_city}{$fields.shipping_city}{/if}" /> *<br />
 {if $errors.shipping_city}<span class="error">{$errors.shipping_city}</span><br/>{/if}
 
             <label for="shipping_postcode">Postcode</label>
-            <input type="text" size="10" name="shipping_postcode" id="shipping_postcode" value="{$fields.shipping_postcode}" /> *<br />
+            <input type="text" size="10" name="shipping_postcode" id="shipping_postcode" value="{if $fields.shipping_postcode}{$fields.shipping_postcode}{/if}" /> *<br />
 {if $errors.shipping_postcode}<span class="error">{$errors.shipping_postcode}</span><br/>{/if}
 
 {if $OPTIONS.cart_special == 'yes'}<label for="shipping_special">Special Instructions</label>
@@ -84,15 +84,15 @@
             <label for="same_as_shipping">Same as my shipping address</label><br />
 
             <label for="billing_firstname">First name</label>
-            <input type="text" size="20" name="billing_firstname" id="billing_firstname" value="{$fields.billing_firstname}" /> *<br />
+            <input type="text" size="20" name="billing_firstname" id="billing_firstname" value="{if $fields.billing_firstname}{$fields.billing_firstname}{/if}" /> *<br />
 {if $errors.billing_firstname}<span class="error">{$errors.billing_firstname}</span><br/>{/if}
 
             <label for="billing_lastname">Last name</label>
-            <input type="text" size="20" name="billing_lastname" id="billing_lastname" value="{$fields.billing_lastname}" /> *<br />
+            <input type="text" size="20" name="billing_lastname" id="billing_lastname" value="{if $fields.billing_lastname}{$fields.billing_lastname}{/if}" /> *<br />
 {if $errors.billing_lastname}<span class="error">{$errors.billing_lastname}</span><br/>{/if}
 
             <label for="billing_email">Email</label>
-            <input type="text" size="30" name="billing_email" id="billing_email" value="{$fields.billing_email}" /> *<br />
+            <input type="text" size="30" name="billing_email" id="billing_email" value="{if $fields.billing_email}{$fields.billing_email}{/if}" /> *<br />
 {if $errors.billing_email}<span class="error">{$errors.billing_email}</span><br/>{/if}
 
             <label for="billing_country">Country</label>
@@ -104,27 +104,27 @@
 {if $errors.billing_country}<span class="error">{$errors.billing_country}</span><br/>{/if}
 
             <label for="billing_state">State</label>
-            <input type="text" size="20" name="billing_state" id="billing_state" value="{$fields.billing_state}" /><br />
+            <input type="text" size="20" name="billing_state" id="billing_state" value="{if $fields.billing_state}{$fields.billing_state}{/if}" /><br />
 {if $errors.billing_state}<span class="error">{$errors.billing_state}</span><br/>{/if}
 
             <label for="billing_address1">Address 1</label>
-            <input type="text" size="30" name="billing_address1" id="billing_address1" value="{$fields.billing_address1}" /> *<br />
+            <input type="text" size="30" name="billing_address1" id="billing_address1" value="{if $fields.billing_address1}{$fields.billing_address1}{/if}" /> *<br />
 {if $errors.billing_address1}<span class="error">{$errors.billing_address1}</span><br/>{/if}
 
             <label for="billing_address2">Address 2</label>
-            <input type="text" size="30" name="billing_address2" id="billing_address2" value="{$fields.billing_address2}" /><br />
+            <input type="text" size="30" name="billing_address2" id="billing_address2" value="{if $fields.billing_address2}{$fields.billing_address2}{/if}" /><br />
 {if $errors.billing_address2}<span class="error">{$errors.billing_address2}</span><br/>{/if}
 
             <label for="billing_suburb">Suburb</label>
-            <input type="text" size="20" name="billing_suburb" id="billing_suburb" value="{$fields.billing_suburb}" /><br />
+            <input type="text" size="20" name="billing_suburb" id="billing_suburb" value="{if $fields.billing_suburb}{$fields.billing_suburb}{/if}" /><br />
 {if $errors.billing_suburb}<span class="error">{$errors.billing_suburb}</span><br/>{/if}
 
             <label for="billing_city">City</label>
-            <input type="text" size="20" name="billing_city" id="billing_city" value="{$fields.billing_city}" /> *<br />
+            <input type="text" size="20" name="billing_city" id="billing_city" value="{if $fields.billing_city}{$fields.billing_city}{/if}" /> *<br />
 {if $errors.billing_city}<span class="error">{$errors.billing_city}</span><br/>{/if}
 
             <label for="billing_postcode">Postcode</label>
-            <input type="text" size="10" name="billing_postcode" id="billing_postcode" value="{$fields.billing_postcode}" /> *<br />
+            <input type="text" size="10" name="billing_postcode" id="billing_postcode" value="{if $fields.billing_postcode}{$fields.billing_postcode}{/if}" /> *<br />
 {if $errors.billing_postcode}<span class="error">{$errors.billing_postcode}</span><br/>{/if}
 
         </div>
@@ -138,19 +138,19 @@
             </div>
             <div id="register" style="clear:left">
                     <label for="username">User name</label>
-                    <input type="text" size="10" name="username" id="username" value="{$fields.username}" /> *<br />
+                    <input type="text" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" /> *<br />
                     
                     <label for="password">Password</label>
-                    <input type="text" size="10" name="password" id="password" value="{$fields.password}" /> *<br />
+                    <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
                     
                     <label for="password_confirm">Confirm Password</label>
-                    <input type="text" size="10" name="password" id="password" value="{$fields.password}" /> *<br />
+                    <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
                 </div>
                 <script type="text/javascript">
+                /*<![CDATA[*/
                 {literal}$(document).ready(function(){
                   $('#register').hide();
                   $('#create_account').click(function(){
-                    //if ($('#create_account').attr('checked') == 'checked') {
                     if ($("#create_account:checked").val()) {
                       $('#register').show('normal');
                     } else {
@@ -158,6 +158,7 @@
                     }
                   });
                 });{/literal}
+                /*]]>*/
                 </script>
 {/if}
         <br style="clear: both" />
@@ -166,8 +167,10 @@
 </form>
 </div>
 
-<script type='text/javascript'>{literal}
-    updateCountry($('#billing_country').val(),  'billing');
-    updateCountry($('#shipping_country').val(), 'shipping');
-{/literal}</script>
+<script type='text/javascript'>
+/*<![CDATA[*/
+{literal}    updateCountry($('#billing_country').val(),  'billing');
+    updateCountry($('#shipping_country').val(), 'shipping');{/literal} 
+/*]]>*/
+</script>
 {/if}

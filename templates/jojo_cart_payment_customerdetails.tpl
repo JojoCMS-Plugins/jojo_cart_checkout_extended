@@ -8,7 +8,7 @@
         {if $fields.shipping_suburb}{$fields.shipping_suburb}<br/>{/if}
         {if $fields.shipping_city}{$fields.shipping_city}<br/>{/if}
         {if $fields.shipping_state}{$fields.shipping_state}{/if} {$fields.shipping_postcode}<br/>
-        {section name=c loop=$countries}{if !$found && $countries[c].code|strtoupper==$fields.shipping_country}{$countries[c].name}{/if}{/section}
+        {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.shipping_country}{$c.name}{/if}{/foreach}
         {if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
     </div>   
     <div style="float: left; width: 45%;">
@@ -19,7 +19,7 @@
         {if $fields.billing_suburb}{$fields.billing_suburb}<br/>{/if}
         {if $fields.billing_city}{$fields.billing_city}<br/>{/if}
         {if $fields.billing_state}{$fields.billing_state}{/if} {$fields.billing_postcode}<br/>
-        {section name=c loop=$countries}{if !$found && $countries[c].code|strtoupper==$fields.billing_country}{$countries[c].name}{/if}{/section}
+        {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.billing_country}{$c.name}{/if}{/foreach}
     </div>    
     <div style="clear: both;"></div>
 </div>
