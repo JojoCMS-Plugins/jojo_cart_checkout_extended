@@ -131,6 +131,7 @@
 {jojoHook hook="jojo_cart_extra_fields"}
 
 {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
+<div style="float: left; width: 450px;">
             <h3>Save your details</h3>
             <label for="create_account">Create account</label>
             <div class="form-field">
@@ -160,6 +161,7 @@
                 });{/literal}
                 /*]]>*/
                 </script>
+</div>
 {/if}
         <br style="clear: both" />
         <input type="submit" name="continue" value="Continue"/>
