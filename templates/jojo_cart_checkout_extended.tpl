@@ -41,7 +41,7 @@
 {if $errors.shipping_email}<span class="error">{$errors.shipping_email}</span><br/>{/if}
 
             <label for="shipping_phone">Phone</label>
-            <input type="text" size="20" name="shipping_phone" id="shipping_phone" value="{if $fields.shipping_phone}{$fields.shipping_phone}{/if}" />{if $OPTIONS.cart_phone_required} *{/if}<br />
+            <input type="text" size="20" name="shipping_phone" id="shipping_phone" value="{if $fields.shipping_phone}{$fields.shipping_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
 {if $errors.shipping_phone}<span class="error">{$errors.shipping_phone}</span><br/>{/if}
 
             <label for="shipping_country">Country</label>
@@ -100,7 +100,7 @@
 {if $errors.billing_email}<span class="error">{$errors.billing_email}</span><br/>{/if}
 
             <label for="billing_phone">Phone</label>
-            <input type="text" size="20" name="billing_phone" id="billing_phone" value="{if $fields.billing_phone}{$fields.billing_phone}{/if}" />{if $OPTIONS.cart_phone_required} *{/if}<br />
+            <input type="text" size="20" name="billing_phone" id="billing_phone" value="{if $fields.billing_phone}{$fields.billing_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
 {if $errors.billing_phone}<span class="error">{$errors.billing_phone}</span><br/>{/if}
 
             <label for="billing_country">Country</label>
