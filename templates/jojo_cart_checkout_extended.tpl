@@ -40,6 +40,10 @@
             <input type="text" size="30" name="shipping_email" id="shipping_email" value="{if $fields.shipping_email}{$fields.shipping_email}{/if}" /> *<br />
 {if $errors.shipping_email}<span class="error">{$errors.shipping_email}</span><br/>{/if}
 
+            <label for="shipping_phone">Phone</label>
+            <input type="text" size="20" name="shipping_phone" id="shipping_phone" value="{if $fields.shipping_phone}{$fields.shipping_phone}{/if}" />{if $OPTIONS.cart_phone_required} *{/if}<br />
+{if $errors.shipping_phone}<span class="error">{$errors.shipping_phone}</span><br/>{/if}
+
             <label for="shipping_country">Country</label>
             <select size="1" name="shipping_country" id="shipping_country" onchange="updateCountry($(this).val(), 'shipping');">
 {assign var=found value=false}{foreach from=$countries item=c}
@@ -94,6 +98,10 @@
             <label for="billing_email">Email</label>
             <input type="text" size="30" name="billing_email" id="billing_email" value="{if $fields.billing_email}{$fields.billing_email}{/if}" /> *<br />
 {if $errors.billing_email}<span class="error">{$errors.billing_email}</span><br/>{/if}
+
+            <label for="billing_phone">Phone</label>
+            <input type="text" size="20" name="billing_phone" id="billing_phone" value="{if $fields.billing_phone}{$fields.billing_phone}{/if}" />{if $OPTIONS.cart_phone_required} *{/if}<br />
+{if $errors.billing_phone}<span class="error">{$errors.billing_phone}</span><br/>{/if}
 
             <label for="billing_country">Country</label>
             <select size="1" name="billing_country" id="billing_country" onchange="updateCountry($(this).val(), 'billing');">

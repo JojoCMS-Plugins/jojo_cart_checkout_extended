@@ -117,6 +117,7 @@ function copyShippingToBilling() {
     $('#billing_firstname').val($('#shipping_firstname').val());
     $('#billing_lastname').val($('#shipping_lastname').val());
     $('#billing_email').val($('#shipping_email').val());
+    $('#billing_phone').val($('#shipping_phone').val());
     $('#billing_address1').val($('#shipping_address1').val());
     $('#billing_address2').val($('#shipping_address2').val());
     $('#billing_suburb').val($('#shipping_suburb').val());
