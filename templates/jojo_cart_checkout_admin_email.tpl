@@ -15,6 +15,7 @@ Shipping Address
 
 {if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
 
+{if $OPTIONS.cart_billing == 'yes'}
 Billing Address
   {$fields.billing_firstname} {$fields.billing_lastname} {if $fields.billing_email}<{$fields.billing_email}>{/if}
 
@@ -26,5 +27,5 @@ Billing Address
 {/if}{if $fields.billing_state}  {$fields.billing_state}
 {/if}{if $fields.billing_postcode}  {$fields.billing_postcode}
 {/if}{if $fields.billing_country}{foreach from=$countries item=c}{if $c.code|strtoupper==$fields.billing_country}  {$c.name}{/if}{/foreach}{/if}
-
+{/if}
 

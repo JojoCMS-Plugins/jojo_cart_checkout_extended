@@ -38,7 +38,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         $smarty->assign('countries', $countries);
 
         /* Pre populate some fields when in test mode */
-        if ($testmode && !count($cart->fields) < 6) {        
+        if ($testmode && !count($cart->fields) < 6) {
             $cart->fields['billing_firstname']  = 'admin';
             $cart->fields['billing_lastname']   = 'admin';
             $cart->fields['billing_email']      = _WEBMASTERADDRESS;
@@ -61,7 +61,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $cart->fields['shipping_country']   = 'NZ';
             $cart->fields['shipping_special']   = '';
         }
-        
+
         /* Pre populate a logged in user's details */
         if (!empty($_USERID) && !count($cart->fields)) {
             $user = Jojo::selectRow("SELECT userid, us_firstname, us_lastname, us_email FROM {user} WHERE userid = ? LIMIT 1", array($_USERID));
@@ -75,7 +75,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
                 $cart->fields['shipping_email']     = $user['us_email'];
             }
         }
-        
+
         /* filter to allow modification of fields data - such as auto-population of certain fields */
         $cart->fields = Jojo::applyFilter('jojo_cart_checkout:populate_fields', $cart->fields);
 
@@ -100,18 +100,11 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         foreach($fields as $name) {
             $cart->fields[$name] = Jojo::getFormData($name, false);
         }
-        
+
         call_user_func(array(Jojo_Cart_Class, 'saveCart'));
 
         /* Check for required fields */
         $requiredFields = array(
-            'billing_firstname'  => 'Please enter your first name.',
-            'billing_lastname'   => 'Please enter your last name.',
-            'billing_email'      => 'Please enter your email address.',
-            'billing_address1'   => 'Please enter your billing address.',
-            'billing_city'       => 'Please enter your billing city.',
-            'billing_postcode'   => 'Please enter your post code.',
-            'billing_country'    => 'Please select your country.',
             'shipping_firstname' => 'Please enter your first name.',
             'shipping_lastname'  => 'Please enter your last name.',
             'shipping_address1'  => 'Please enter your shipping address.',
@@ -119,9 +112,22 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             'shipping_postcode'  => 'Please enter your post code.',
             'shipping_country'   => 'Please select your country.',
         );
+
+        if (Jojo::getOption('cart_billing', 'yes') == 'yes') {
+          $requiredFields = $requiredFields + array(
+              'billing_firstname'  => 'Please enter your first name.',
+              'billing_lastname'   => 'Please enter your last name.',
+              'billing_email'      => 'Please enter your email address.',
+              'billing_address1'   => 'Please enter your billing address.',
+              'billing_city'       => 'Please enter your billing city.',
+              'billing_postcode'   => 'Please enter your post code.',
+              'billing_country'    => 'Please select your country.',
+          );
+        }
+
         if (Jojo::getOption('cart_phone_required', 'no') == 'yes') {
-            $requiredFields['billing_phone'] = 'Please enter your billing phone number.';
             $requiredFields['shipping_phone'] = 'Please enter your shipping phone number.';
+            if (Jojo::getOption('cart_billing', 'yes') == 'yes')  $requiredFields['billing_phone'] = 'Please enter your billing phone number.';
         }
         $errors = array();
         foreach($requiredFields as $name => $errorMsg) {

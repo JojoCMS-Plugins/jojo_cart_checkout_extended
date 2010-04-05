@@ -81,6 +81,7 @@
 {if $errors.shipping_special}<span class="error">{$errors.shipping_special}</span><br/>{/if}{/if}
         </div>
 
+{if $OPTIONS.cart_billing == 'yes'}
         <div style="float: left; width: 450px;">
             <h3>Billing Address</h3>
 
@@ -137,6 +138,7 @@
 
         </div>
 {jojoHook hook="jojo_cart_extra_fields"}
+{/if}
 
 {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
 <div style="float: left; width: 450px;">
@@ -148,10 +150,10 @@
             <div id="register" style="clear:left">
                     <label for="username">User name</label>
                     <input type="text" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" /> *<br />
-                    
+
                     <label for="password">Password</label>
                     <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
-                    
+
                     <label for="password_confirm">Confirm Password</label>
                     <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
                 </div>
@@ -180,7 +182,7 @@
 <script type='text/javascript'>
 /*<![CDATA[*/
 {literal}    updateCountry($('#billing_country').val(),  'billing');
-    updateCountry($('#shipping_country').val(), 'shipping');{/literal} 
+    updateCountry($('#shipping_country').val(), 'shipping');{/literal}
 /*]]>*/
 </script>
 {/if}

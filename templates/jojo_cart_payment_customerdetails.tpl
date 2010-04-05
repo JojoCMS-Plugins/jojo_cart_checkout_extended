@@ -10,7 +10,8 @@
         {if $fields.shipping_state}{$fields.shipping_state}{/if} {$fields.shipping_postcode}<br/>
         {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.shipping_country}{$c.name}{/if}{/foreach}
         {if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
-    </div>   
+    </div>
+{if $OPTIONS.cart_billing == 'yes'}
     <div style="float: left; width: 45%;">
         <strong>Billing Address</strong><br/>
         {$fields.billing_firstname} {$fields.billing_lastname} {if $fields.billing_email}&lt;{$fields.billing_email}&gt;{/if}<br />
@@ -20,7 +21,8 @@
         {if $fields.billing_city}{$fields.billing_city}<br/>{/if}
         {if $fields.billing_state}{$fields.billing_state}{/if} {$fields.billing_postcode}<br/>
         {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.billing_country}{$c.name}{/if}{/foreach}
-    </div>    
+    </div>
+{/if}
     <div style="clear: both;"></div>
 </div>
 <p><a class="cart-button" href="cart/checkout">Change Shipping / Billing details</a></p>

@@ -31,3 +31,14 @@ $_options[] = array(
     'options'     => 'yes,no',
     'plugin'      => 'jojo_cart_checkout_extended'
 );
+
+$_options[] = array(
+    'id'          => 'cart_billing',
+    'category'    => 'Cart',
+    'label'       => 'Ask for separate billing address details?',
+    'description' => 'Shipping address is default. Option to ask for separate billing address details',
+    'type'        => 'radio',
+    'default'     => 'yes',
+    'options'     => 'yes,no',
+    'plugin'      => 'jojo_cart_checkout_extended'
+);
