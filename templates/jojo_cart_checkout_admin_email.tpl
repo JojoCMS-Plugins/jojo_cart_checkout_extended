@@ -13,7 +13,8 @@ Shipping Address
 {/if}{if $fields.shipping_postcode}  {$fields.shipping_postcode}
 {/if}{if $fields.shipping_country}{foreach from=$countries item=c}{if $c.code|strtoupper==$fields.shipping_country}  {$c.name}{/if}{/foreach}{/if}
 
-{if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
+{if $fields.shipping_special}Special instructions: {$fields.shipping_special}
+{/if}{jojoHook hook="jojo_cart_extra_fields_email"}
 
 {if $OPTIONS.cart_billing == 'yes'}
 Billing Address

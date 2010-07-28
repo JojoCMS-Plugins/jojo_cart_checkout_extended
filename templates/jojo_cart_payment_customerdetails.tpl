@@ -8,8 +8,10 @@
         {if $fields.shipping_suburb}{$fields.shipping_suburb}<br/>{/if}
         {if $fields.shipping_city}{$fields.shipping_city}<br/>{/if}
         {if $fields.shipping_state}{$fields.shipping_state}{/if} {$fields.shipping_postcode}<br/>
-        {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.shipping_country}{$c.name}{/if}{/foreach}
-        {if $fields.shipping_special}Special instructions: {$fields.shipping_special}{/if}
+        {foreach from=$countries item=c}{if !$found && $c.code|strtoupper==$fields.shipping_country}{$c.name}{/if}{/foreach}<br />
+        {if $fields.shipping_special}Special instructions: {$fields.shipping_special}<br />{/if}
+        {jojoHook hook="jojo_cart_extra_fields_email"}
+
     </div>
 {if $OPTIONS.cart_billing == 'yes'}
     <div style="float: left; width: 45%;">
