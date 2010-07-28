@@ -79,6 +79,7 @@
 {if $OPTIONS.cart_special == 'yes'}<label for="shipping_special">Special Instructions</label>
             <textarea rows="4" cols="40" name="shipping_special" id="shipping_special">{$fields.shipping_special}</textarea><br />
 {if $errors.shipping_special}<span class="error">{$errors.shipping_special}</span><br/>{/if}{/if}
+{jojoHook hook="jojo_cart_extra_fields"}
         </div>
 
 {if $OPTIONS.cart_billing == 'yes'}
@@ -136,8 +137,9 @@
             <input type="text" size="10" name="billing_postcode" id="billing_postcode" value="{if $fields.billing_postcode}{$fields.billing_postcode}{/if}" /> *<br />
 {if $errors.billing_postcode}<span class="error">{$errors.billing_postcode}</span><br/>{/if}
 
-        </div>
 {jojoHook hook="jojo_cart_extra_fields"}
+        </div>
+
 {/if}
 
 {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
