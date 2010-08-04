@@ -29,19 +29,19 @@
             <h3>Shipping Address</h3>
 
             <label for="shipping_firstname">First name</label>
-            <input type="text" size="20" name="shipping_firstname" id="shipping_firstname" value="{if $fields.shipping_firstname}{$fields.shipping_firstname}{/if}" /> *<br />
+            <input type="text" size="20" name="shipping_firstname" maxlength="20" id="shipping_firstname" value="{if $fields.shipping_firstname}{$fields.shipping_firstname}{/if}" /> *<br />
 {if $errors.shipping_firstname}<span class="error">{$errors.shipping_firstname}</span><br/>{/if}
 
             <label for="shipping_lastname">Last name</label>
-            <input type="text" size="20" name="shipping_lastname" id="shipping_lastname" value="{if $fields.shipping_lastname}{$fields.shipping_lastname}{/if}" /> *<br />
+            <input type="text" size="20" name="shipping_lastname" maxlength="20" id="shipping_lastname" value="{if $fields.shipping_lastname}{$fields.shipping_lastname}{/if}" /> *<br />
 {if $errors.shipping_lastname}<span class="error">{$errors.shipping_lastname}</span><br/>{/if}
 
             <label for="shipping_email">Email</label>
-            <input type="text" size="30" name="shipping_email" id="shipping_email" value="{if $fields.shipping_email}{$fields.shipping_email}{/if}" /> *<br />
+            <input type="text" size="30" name="shipping_email" maxlength="85" id="shipping_email" value="{if $fields.shipping_email}{$fields.shipping_email}{/if}" /> *<br />
 {if $errors.shipping_email}<span class="error">{$errors.shipping_email}</span><br/>{/if}
 
             <label for="shipping_phone">Phone</label>
-            <input type="text" size="20" name="shipping_phone" id="shipping_phone" value="{if $fields.shipping_phone}{$fields.shipping_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
+            <input type="text" size="20" name="shipping_phone" maxlength="25" id="shipping_phone" value="{if $fields.shipping_phone}{$fields.shipping_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
 {if $errors.shipping_phone}<span class="error">{$errors.shipping_phone}</span><br/>{/if}
 
             <label for="shipping_country">Country</label>
@@ -53,23 +53,23 @@
 {if $errors.shipping_country}<span class="error">{$errors.shipping_country}</span><br/>{/if}
 
             <label for="shipping_state">State</label>
-            <input type="text" size="20" name="shipping_state" id="shipping_state" value="{if $fields.shipping_state}{$fields.shipping_state}{/if}" /><br />
+            <input type="text" size="20" name="shipping_state" maxlength="35" id="shipping_state" value="{if $fields.shipping_state}{$fields.shipping_state}{/if}" /><br />
 {if $errors.shipping_state}<span class="error">{$errors.shipping_state}</span><br/>{/if}
 
             <label for="shipping_address1">Address 1</label>
-            <input type="text" size="30" name="shipping_address1" id="shipping_address1" value="{if $fields.shipping_address1}{$fields.shipping_address1}{/if}" /> *<br />
+            <input type="text" size="30" name="shipping_address1" maxlength="35" id="shipping_address1" value="{if $fields.shipping_address1}{$fields.shipping_address1}{/if}" /> *<br />
 {if $errors.shipping_address1}<span class="error">{$errors.shipping_address1}</span><br/>{/if}
 
             <label for="shipping_address2">Address 2</label>
-            <input type="text" size="30" name="shipping_address2" id="shipping_address2" value="{if $fields.shipping_address2}{$fields.shipping_address2}{/if}" /><br />
+            <input type="text" size="30" name="shipping_address2" maxlength="35" id="shipping_address2" value="{if $fields.shipping_address2}{$fields.shipping_address2}{/if}" /><br />
 {if $errors.shipping_address2}<span class="error">{$errors.shipping_address2}</span><br/>{/if}
 
             <label for="shipping_suburb">Suburb</label>
-            <input type="text" size="20" name="shipping_suburb" id="shipping_suburb" value="{if $fields.shipping_suburb}{$fields.shipping_suburb}{/if}" /><br />
+            <input type="text" size="20" name="shipping_suburb" maxlength="35" id="shipping_suburb" value="{if $fields.shipping_suburb}{$fields.shipping_suburb}{/if}" /><br />
 {if $errors.shipping_suburb}<span class="error">{$errors.shipping_suburb}</span><br/>{/if}
 
             <label for="shipping_city">City</label>
-            <input type="text" size="20" name="shipping_city" id="shipping_city" value="{if $fields.shipping_city}{$fields.shipping_city}{/if}" /> *<br />
+            <input type="text" size="20" name="shipping_city" maxlength="35" id="shipping_city" value="{if $fields.shipping_city}{$fields.shipping_city}{/if}" /> *<br />
 {if $errors.shipping_city}<span class="error">{$errors.shipping_city}</span><br/>{/if}
 
             <label for="shipping_postcode">Postcode</label>
@@ -90,23 +90,23 @@
             <label for="same_as_shipping">Same as my shipping address</label><br />
 
             <label for="billing_firstname">First name</label>
-            <input type="text" size="20" name="billing_firstname" id="billing_firstname" value="{if $fields.billing_firstname}{$fields.billing_firstname}{/if}" /> *<br />
+            <input type="text" size="20" name="billing_firstname" maxlength="20" id="billing_firstname" value="{if $fields.billing_firstname}{$fields.billing_firstname}{/if}" /> *<br />
 {if $errors.billing_firstname}<span class="error">{$errors.billing_firstname}</span><br/>{/if}
 
             <label for="billing_lastname">Last name</label>
-            <input type="text" size="20" name="billing_lastname" id="billing_lastname" value="{if $fields.billing_lastname}{$fields.billing_lastname}{/if}" /> *<br />
+            <input type="text" size="20" name="billing_lastname" maxlength="20" id="billing_lastname" value="{if $fields.billing_lastname}{$fields.billing_lastname}{/if}" /> *<br />
 {if $errors.billing_lastname}<span class="error">{$errors.billing_lastname}</span><br/>{/if}
 
             <label for="billing_email">Email</label>
-            <input type="text" size="30" name="billing_email" id="billing_email" value="{if $fields.billing_email}{$fields.billing_email}{/if}" /> *<br />
+            <input type="text" size="30" name="billing_email" maxlength="85" id="billing_email" value="{if $fields.billing_email}{$fields.billing_email}{/if}" /> *<br />
 {if $errors.billing_email}<span class="error">{$errors.billing_email}</span><br/>{/if}
 
             <label for="billing_phone">Phone</label>
-            <input type="text" size="20" name="billing_phone" id="billing_phone" value="{if $fields.billing_phone}{$fields.billing_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
+            <input type="text" size="20" name="billing_phone" maxlength="25" id="billing_phone" value="{if $fields.billing_phone}{$fields.billing_phone}{/if}" />{if $OPTIONS.cart_phone_required=='yes'} *{/if}<br />
 {if $errors.billing_phone}<span class="error">{$errors.billing_phone}</span><br/>{/if}
 
             <label for="billing_country">Country</label>
-            <select size="1" name="billing_country" id="billing_country" onchange="updateCountry($(this).val(), 'billing');">
+            <select size="1" name="billing_country" maxlength="35" id="billing_country" onchange="updateCountry($(this).val(), 'billing');">
 {assign var=found value=false}{foreach from=$countries item=c}
                 <option value="{$c.code|strtoupper}"{if !$found && $c.code|strtoupper==$fields.billing_country} selected="selected"{assign var=found value=true}{/if}>{$c.name}</option>
 {/foreach}
@@ -114,23 +114,23 @@
 {if $errors.billing_country}<span class="error">{$errors.billing_country}</span><br/>{/if}
 
             <label for="billing_state">State</label>
-            <input type="text" size="20" name="billing_state" id="billing_state" value="{if $fields.billing_state}{$fields.billing_state}{/if}" /><br />
+            <input type="text" size="20" name="billing_state" maxlength="35" id="billing_state" value="{if $fields.billing_state}{$fields.billing_state}{/if}" /><br />
 {if $errors.billing_state}<span class="error">{$errors.billing_state}</span><br/>{/if}
 
             <label for="billing_address1">Address 1</label>
-            <input type="text" size="30" name="billing_address1" id="billing_address1" value="{if $fields.billing_address1}{$fields.billing_address1}{/if}" /> *<br />
+            <input type="text" size="30" name="billing_address1" maxlength="35" id="billing_address1" value="{if $fields.billing_address1}{$fields.billing_address1}{/if}" /> *<br />
 {if $errors.billing_address1}<span class="error">{$errors.billing_address1}</span><br/>{/if}
 
             <label for="billing_address2">Address 2</label>
-            <input type="text" size="30" name="billing_address2" id="billing_address2" value="{if $fields.billing_address2}{$fields.billing_address2}{/if}" /><br />
+            <input type="text" size="30" name="billing_address2" maxlength="35" id="billing_address2" value="{if $fields.billing_address2}{$fields.billing_address2}{/if}" /><br />
 {if $errors.billing_address2}<span class="error">{$errors.billing_address2}</span><br/>{/if}
 
             <label for="billing_suburb">Suburb</label>
-            <input type="text" size="20" name="billing_suburb" id="billing_suburb" value="{if $fields.billing_suburb}{$fields.billing_suburb}{/if}" /><br />
+            <input type="text" size="20" name="billing_suburb" maxlength="35" id="billing_suburb" value="{if $fields.billing_suburb}{$fields.billing_suburb}{/if}" /><br />
 {if $errors.billing_suburb}<span class="error">{$errors.billing_suburb}</span><br/>{/if}
 
             <label for="billing_city">City</label>
-            <input type="text" size="20" name="billing_city" id="billing_city" value="{if $fields.billing_city}{$fields.billing_city}{/if}" /> *<br />
+            <input type="text" size="20" name="billing_city" maxlength="35" id="billing_city" value="{if $fields.billing_city}{$fields.billing_city}{/if}" /> *<br />
 {if $errors.billing_city}<span class="error">{$errors.billing_city}</span><br/>{/if}
 
             <label for="billing_postcode">Postcode</label>

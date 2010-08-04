@@ -141,6 +141,14 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $errors[] = 'Please enter a valid email address.';
         }
 
+        $name= $cart->fields['shipping_firstname'].' '.$cart->fields['shipping_lastname'];
+        if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';
+
+        if (Jojo::getOption('cart_billing', 'yes') == 'yes') {
+            $name= $cart->fields['billing_firstname'].' '.$cart->fields['billing_lastname'];
+            if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';
+        }
+
         if (count($errors)) {
             /* There were errors, let the user fix them */
             $smarty->assign('errors', $errors);
