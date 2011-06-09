@@ -87,7 +87,7 @@
             <h3>Billing Address</h3>
 
             <input type="checkbox" value="same" id="same_as_shipping" onchange="if ($(this).attr('checked')) copyShippingToBilling();"/>
-            <label for="same_as_shipping">Same as my shipping address</label><br />
+            <label for="same_as_shipping">Same as my shipping address</label><br /><div class="clear"></div>
 
             <label for="billing_firstname">First name</label>
             <input type="text" size="20" name="billing_firstname" maxlength="20" id="billing_firstname" value="{if $fields.billing_firstname}{$fields.billing_firstname}{/if}" /> *<br />
