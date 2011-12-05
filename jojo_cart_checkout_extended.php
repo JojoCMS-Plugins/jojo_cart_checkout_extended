@@ -41,6 +41,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         if ($testmode && !count($cart->fields) < 6) {
             $cart->fields['billing_firstname']  = 'admin';
             $cart->fields['billing_lastname']   = 'admin';
+            $cart->fields['billing_company']    = '';
             $cart->fields['billing_email']      = _WEBMASTERADDRESS;
             $cart->fields['billing_phone']      = '555-5555';
             $cart->fields['billing_address1']   = '123 Test Road';
@@ -52,6 +53,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
 
             $cart->fields['shipping_firstname'] = 'Test';
             $cart->fields['shipping_lastname']  = 'Test';
+            $cart->fields['shipping_company']    = '';
             $cart->fields['shipping_phone']     = '555-5555';
             $cart->fields['shipping_address1']  = '123 Test Road';
             $cart->fields['shipping_address2']  = '';
@@ -90,10 +92,10 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         }
 
         /* Get form values */
-        $fields = array('billing_firstname', 'billing_lastname',
+        $fields = array('billing_firstname', 'billing_lastname', 'billing_company',
             'billing_email', 'billing_phone', 'billing_address1', 'billing_address2',
             'billing_suburb', 'billing_city', 'billing_state',
-            'billing_postcode', 'billing_country', 'shipping_firstname',
+            'billing_postcode', 'billing_country', 'shipping_firstname', 'shipping_company',
             'shipping_lastname', 'shipping_email', 'shipping_phone', 'shipping_address1',
             'shipping_address2', 'shipping_suburb', 'shipping_city',
             'shipping_state', 'shipping_postcode', 'shipping_country', 'shipping_special');

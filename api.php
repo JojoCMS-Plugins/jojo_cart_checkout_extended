@@ -42,3 +42,14 @@ $_options[] = array(
     'options'     => 'yes,no',
     'plugin'      => 'jojo_cart_checkout_extended'
 );
+
+$_options[] = array(
+    'id'          => 'cart_use_company',
+    'category'    => 'Cart',
+    'label'       => 'Show company field on checkout',
+    'description' => 'Shows a field for company name as part of the checkout process',
+    'type'        => 'radio',
+    'default'     => 'no',
+    'options'     => 'yes,no',
+    'plugin'      => 'jojo_cart_checkout_extended'
+);

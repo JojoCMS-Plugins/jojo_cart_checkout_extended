@@ -116,6 +116,7 @@ function updateCountryStates(country, section) {
 function copyShippingToBilling() {
     $('#billing_firstname').val($('#shipping_firstname').val());
     $('#billing_lastname').val($('#shipping_lastname').val());
+    $('#billing_company').val($('#shipping_company').val());
     $('#billing_email').val($('#shipping_email').val());
     $('#billing_phone').val($('#shipping_phone').val());
     $('#billing_address1').val($('#shipping_address1').val());

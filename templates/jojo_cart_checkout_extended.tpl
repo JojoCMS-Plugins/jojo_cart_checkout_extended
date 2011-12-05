@@ -36,6 +36,14 @@
             <input type="text" size="20" name="shipping_lastname" maxlength="20" id="shipping_lastname" value="{if $fields.shipping_lastname}{$fields.shipping_lastname}{/if}" /> *<br />
 {if $errors.shipping_lastname}<span class="error">{$errors.shipping_lastname}</span><br/>{/if}
 
+{if $OPTIONS.cart_use_company=='yes'}
+            <label for="shipping_company">Company</label>
+            <input type="text" size="20" name="shipping_company" maxlength="20" id="shipping_company" value="{if $fields.shipping_company}{$fields.shipping_company}{/if}" /><br />
+{if $errors.shipping_company}<span class="error">{$errors.shipping_company}</span><br/>{/if}
+{else}
+<input type="hidden" name="shipping_company" id="shipping_company" value="{if $fields.shipping_company}{$fields.shipping_company}{/if}" />
+{/if}
+
             <label for="shipping_email">Email</label>
             <input type="text" size="30" name="shipping_email" maxlength="85" id="shipping_email" value="{if $fields.shipping_email}{$fields.shipping_email}{/if}" /> *<br />
 {if $errors.shipping_email}<span class="error">{$errors.shipping_email}</span><br/>{/if}
@@ -97,6 +105,14 @@
             <label for="billing_lastname">Last name</label>
             <input type="text" size="20" name="billing_lastname" maxlength="20" id="billing_lastname" value="{if $fields.billing_lastname}{$fields.billing_lastname}{/if}" /> *<br />
 {if $errors.billing_lastname}<span class="error">{$errors.billing_lastname}</span><br/>{/if}
+
+{if $OPTIONS.cart_use_company=='yes'}
+            <label for="billing_company">Company</label>
+            <input type="text" size="20" name="billing_company" maxlength="20" id="billing_company" value="{if $fields.billing_company}{$fields.billing_company}{/if}" /><br />
+{if $errors.billing_company}<span class="error">{$errors.billing_company}</span><br/>{/if}
+{else}
+<input type="hidden" name="billing_company" id="billing_company" value="{if $fields.billing_company}{$fields.billing_company}{/if}" />
+{/if}
 
             <label for="billing_email">Email</label>
             <input type="text" size="30" name="billing_email" maxlength="85" id="billing_email" value="{if $fields.billing_email}{$fields.billing_email}{/if}" /> *<br />
