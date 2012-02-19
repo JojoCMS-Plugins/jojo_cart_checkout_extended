@@ -7,7 +7,7 @@
 {include file="jojo_cart_test_mode.tpl"}
 
 {if !$fields.userid}
-<div>Existing customers can <a href="login/cart/checkout/" rel="nofollow">login</a> to retrieve billing details.</div>
+<div id="existing_customers_login">Existing customers can <a href="login/cart/checkout/" rel="nofollow">login</a> to retrieve billing details.</div>
 {/if}
 
 {if $errors}
@@ -81,7 +81,7 @@
 {if $errors.shipping_city}<span class="error">{$errors.shipping_city}</span><br/>{/if}
 
             <label for="shipping_postcode">Postcode</label>
-            <input type="text" size="10" name="shipping_postcode" id="shipping_postcode" value="{if $fields.shipping_postcode}{$fields.shipping_postcode}{/if}" /> *<br />
+            <input type="text" size="10" name="shipping_postcode" id="shipping_postcode" value="{if $fields.shipping_postcode}{$fields.shipping_postcode}{/if}" /> {if $required_fields.shipping_postcode}*{/if}<br />
 {if $errors.shipping_postcode}<span class="error">{$errors.shipping_postcode}</span><br/>{/if}
 
 {if $OPTIONS.cart_special == 'yes'}<label for="shipping_special">Special Instructions</label>
@@ -151,7 +151,7 @@
 {if $errors.billing_city}<span class="error">{$errors.billing_city}</span><br/>{/if}
 
             <label for="billing_postcode">Postcode</label>
-            <input type="text" size="10" name="billing_postcode" id="billing_postcode" value="{if $fields.billing_postcode}{$fields.billing_postcode}{/if}" /> *<br />
+            <input type="text" size="10" name="billing_postcode" id="billing_postcode" value="{if $fields.billing_postcode}{$fields.billing_postcode}{/if}" /> {if $required_fields.billing_postcode}*{/if}<br />
 {if $errors.billing_postcode}<span class="error">{$errors.billing_postcode}</span><br/>{/if}
 
 {jojoHook hook="jojo_cart_extra_fields"}{* deprecated: please use the shipping / billing hooks instead *}

@@ -150,6 +150,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $name= $cart->fields['billing_firstname'].' '.$cart->fields['billing_lastname'];
             if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';
         }
+        $smarty->assign('required_fields', $requiredFields);
 
         if (count($errors)) {
             /* There were errors, let the user fix them */
