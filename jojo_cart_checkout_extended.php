@@ -66,7 +66,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
 
         /* Pre populate a logged in user's details */
         if (!empty($_USERID) && !count($cart->fields)) {
-            $user = Jojo::selectRow("SELECT userid, us_firstname, us_lastname, us_email FROM {user} WHERE userid = ? LIMIT 1", array($_USERID));
+            $user = Jojo::selectRow("SELECT userid, us_firstname, us_lastname, us_email, us_company, us_phone, us_address1, us_address2, us_address3, us_suburb, us_city, us_state, us_postcode, us_country FROM {user} WHERE userid = ? LIMIT 1", array($_USERID));
             if (isset($user['userid'])) {
                 $cart->fields['userid']             = $user['userid'];
                 $cart->fields['billing_firstname']  = $user['us_firstname'];
@@ -75,6 +75,26 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
                 $cart->fields['shipping_lastname']  = $user['us_lastname'];
                 $cart->fields['billing_email']      = $user['us_email'];
                 $cart->fields['shipping_email']     = $user['us_email'];
+                
+                $cart->fields['billing_company']    = $user['us_company'];
+                $cart->fields['billing_phone']      = $user['us_phone'];
+                $cart->fields['billing_address1']   = $user['us_address1'];
+                $cart->fields['billing_address2']   = $user['us_address2'];
+                $cart->fields['billing_suburb']     = $user['us_suburb'];
+                $cart->fields['billing_city']       = $user['us_city'];
+                $cart->fields['billing_state']      = $user['us_state'];
+                $cart->fields['billing_postcode']   = $user['us_postcode'];
+                $cart->fields['billing_country']    = $user['us_country'];
+                
+                $cart->fields['shipping_company']   = $user['us_company'];
+                $cart->fields['shipping_phone']     = $user['us_phone'];
+                $cart->fields['shipping_address1']  = $user['us_address1'];
+                $cart->fields['shipping_address2']  = $user['us_address2'];
+                $cart->fields['shipping_suburb']    = $user['us_suburb'];
+                $cart->fields['shipping_city']      = $user['us_city'];
+                $cart->fields['shipping_state']     = $user['us_state'];
+                $cart->fields['shipping_postcode']  = $user['us_postcode'];
+                $cart->fields['shipping_country']   = $user['us_country'];
             }
         }
 
@@ -98,7 +118,8 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             'billing_postcode', 'billing_country', 'shipping_firstname', 'shipping_company',
             'shipping_lastname', 'shipping_email', 'shipping_phone', 'shipping_address1',
             'shipping_address2', 'shipping_suburb', 'shipping_city',
-            'shipping_state', 'shipping_postcode', 'shipping_country', 'shipping_special');
+            'shipping_state', 'shipping_postcode', 'shipping_country', 'shipping_special',
+            'username', 'password', 'confirm_password');
         $fields = Jojo::applyFilter('jojo_cart_checkout:get_fields', $fields);
         foreach($fields as $name) {
             $cart->fields[$name] = Jojo::getFormData($name, false);
@@ -142,6 +163,17 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         if (!empty($cart->fields['Email']) && !Jojo::checkEmailFormat($cart->fields['Email'])) {
             $errors[] = 'Please enter a valid email address.';
         }
+        
+        /*
+        if (Jojo::getOption('cart_create_account', 'no') == 'yes') {
+            if (!empty($cart->fields['username']) && empty($cart->fields['password'])) {
+                $errors[] = 'Please enter a password.';
+            }
+            if (!empty($cart->fields['password']) && ($cart->fields['password'] != $cart->fields['confirm_password'])) {
+                $errors[] = 'Please ensure the passwords match.';
+            }
+        }
+        */
 
         $name= $cart->fields['shipping_firstname'].' '.$cart->fields['shipping_lastname'];
         if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';

@@ -160,6 +160,8 @@
 
 {/if}
 
+{*
+disabled as this doesn't appear to work
 {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
 <div style="float: left; width: 450px;">
             <h3>Save your details</h3>
@@ -172,10 +174,10 @@
                     <input type="text" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" /> *<br />
 
                     <label for="password">Password</label>
-                    <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
+                    <input type="password" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
 
                     <label for="password_confirm">Confirm Password</label>
-                    <input type="text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
+                    <input type="password" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
                 </div>
                 <script type="text/javascript">
                 /*<![CDATA[*/
@@ -193,6 +195,7 @@
                 </script>
 </div>
 {/if}
+*}
         <br style="clear: both" />
         <input type="submit" name="continue" value="Continue"/>
     </div>
