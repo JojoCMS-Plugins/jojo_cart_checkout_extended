@@ -128,3 +128,19 @@ function copyShippingToBilling() {
     $('#billing_country').val($('#shipping_country').val());
     updateCountry($('#billing_country').val(), 'billing');
 }
+
+function copyBillingToShipping() {
+    $('#shipping_firstname').val($('#billing_firstname').val());
+    $('#shipping_lastname').val($('#billing_lastname').val());
+    $('#shipping_company').val($('#billing_company').val());
+    $('#shipping_email').val($('#billing_email').val());
+    $('#shipping_phone').val($('#billing_phone').val());
+    $('#shipping_address1').val($('#billing_address1').val());
+    $('#shipping_address2').val($('#billing_address2').val());
+    $('#shipping_suburb').val($('#billing_suburb').val());
+    $('#shipping_city').val($('#billing_city').val());
+    $('#shipping_state').val($('#billing_state').val());
+    $('#shipping_postcode').val($('#billing_postcode').val());
+    $('#shipping_country').val($('#billing_country').val());
+    updateCountry($('#shipping_country').val(), 'shipping');
+}

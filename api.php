@@ -44,6 +44,17 @@ $_options[] = array(
 );
 
 $_options[] = array(
+    'id'          => 'cart_billing_first',
+    'category'    => 'Cart',
+    'label'       => 'Billing address before shipping address?',
+    'description' => 'Shipping address is first by default. Set this option to take billing details first.',
+    'type'        => 'radio',
+    'default'     => 'no',
+    'options'     => 'yes,no',
+    'plugin'      => 'jojo_cart_checkout_extended'
+);
+
+$_options[] = array(
     'id'          => 'cart_use_company',
     'category'    => 'Cart',
     'label'       => 'Show company field on checkout',
