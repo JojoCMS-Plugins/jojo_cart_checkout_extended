@@ -112,7 +112,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         }
         
         /* log POST data */
-        Jojo::insertQuery("INSERT INTO {cart_log} SET token=?, updated=?, data=?", array($cart->token, time(), print_r($_POST, true)));
+        Jojo::insertQuery("INSERT INTO {cart_log} SET token=?, updated=?, data=?", array($cart->token, time(), print_r($_POST, true)."\n\n".print_r($_SERVER, true)));
 
         /* Get form values */
         $fields = array('billing_firstname', 'billing_lastname', 'billing_company',
