@@ -125,7 +125,12 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             'username', 'password', 'confirm_password');
         $fields = Jojo::applyFilter('jojo_cart_checkout:get_fields', $fields);
         foreach($fields as $name) {
-            $cart->fields[$name] = Jojo::getFormData($name, false);
+            //$cart->fields[$name] = Jojo::getFormData($name, false);
+            if (isset($_POST[$name])) {
+                $cart->fields[$name] = $_POST[$name];
+            } else {
+                $cart->fields[$name] = false;
+            }
         }
 
         call_user_func(array(Jojo_Cart_Class, 'saveCart'));
@@ -159,7 +164,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         $requiredFields = Jojo::applyFilter('jojo_cart_checkout:required_fields', $requiredFields);
         $errors = array();
         foreach($requiredFields as $name => $errorMsg) {
-            if (!$cart->fields[$name]) {
+            if (empty($cart->fields[$name])) {
                 $errors[$name] = $errorMsg;
             }
         }
