@@ -65,36 +65,36 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         }
 
         /* Pre populate a logged in user's details */
-        if (!empty($_USERID) && !count($cart->fields)) {
+        if (!empty($_USERID)) {
             $user = Jojo::selectRow("SELECT userid, us_firstname, us_lastname, us_email, us_company, us_phone, us_address1, us_address2, us_address3, us_suburb, us_city, us_state, us_postcode, us_country FROM {user} WHERE userid = ? LIMIT 1", array($_USERID));
             if (isset($user['userid'])) {
                 $cart->fields['userid']             = $user['userid'];
-                $cart->fields['billing_firstname']  = $user['us_firstname'];
-                $cart->fields['billing_lastname']   = $user['us_lastname'];
-                $cart->fields['shipping_firstname'] = $user['us_firstname'];
-                $cart->fields['shipping_lastname']  = $user['us_lastname'];
-                $cart->fields['billing_email']      = $user['us_email'];
-                $cart->fields['shipping_email']     = $user['us_email'];
+                if (empty($cart->fields['billing_firstname']))  $cart->fields['billing_firstname']  = $user['us_firstname'];
+                if (empty($cart->fields['billing_lastname']))   $cart->fields['billing_lastname']   = $user['us_lastname'];
+                if (empty($cart->fields['shipping_firstname'])) $cart->fields['shipping_firstname'] = $user['us_firstname'];
+                if (empty($cart->fields['shipping_lastname']))  $cart->fields['shipping_lastname']  = $user['us_lastname'];
+                if (empty($cart->fields['billing_email']))      $cart->fields['billing_email']      = $user['us_email'];
+                if (empty($cart->fields['shipping_email']))     $cart->fields['shipping_email']     = $user['us_email'];
                 
-                $cart->fields['billing_company']    = $user['us_company'];
-                $cart->fields['billing_phone']      = $user['us_phone'];
-                $cart->fields['billing_address1']   = $user['us_address1'];
-                $cart->fields['billing_address2']   = $user['us_address2'];
-                $cart->fields['billing_suburb']     = $user['us_suburb'];
-                $cart->fields['billing_city']       = $user['us_city'];
-                $cart->fields['billing_state']      = $user['us_state'];
-                $cart->fields['billing_postcode']   = $user['us_postcode'];
-                $cart->fields['billing_country']    = $user['us_country'];
+                if (empty($cart->fields['billing_company']))    $cart->fields['billing_company']    = $user['us_company'];
+                if (empty($cart->fields['billing_phone']))      $cart->fields['billing_phone']      = $user['us_phone'];
+                if (empty($cart->fields['billing_address1']))   $cart->fields['billing_address1']   = $user['us_address1'];
+                if (empty($cart->fields['billing_address2']))   $cart->fields['billing_address2']   = $user['us_address2'];
+                if (empty($cart->fields['billing_suburb']))     $cart->fields['billing_suburb']     = $user['us_suburb'];
+                if (empty($cart->fields['billing_city']))       $cart->fields['billing_city']       = $user['us_city'];
+                if (empty($cart->fields['billing_state']))      $cart->fields['billing_state']      = $user['us_state'];
+                if (empty($cart->fields['billing_postcode']))   $cart->fields['billing_postcode']   = $user['us_postcode'];
+                if (empty($cart->fields['billing_country']))    $cart->fields['billing_country']    = $user['us_country'];
                 
-                $cart->fields['shipping_company']   = $user['us_company'];
-                $cart->fields['shipping_phone']     = $user['us_phone'];
-                $cart->fields['shipping_address1']  = $user['us_address1'];
-                $cart->fields['shipping_address2']  = $user['us_address2'];
-                $cart->fields['shipping_suburb']    = $user['us_suburb'];
-                $cart->fields['shipping_city']      = $user['us_city'];
-                $cart->fields['shipping_state']     = $user['us_state'];
-                $cart->fields['shipping_postcode']  = $user['us_postcode'];
-                $cart->fields['shipping_country']   = $user['us_country'];
+                if (empty($cart->fields['shipping_company']))   $cart->fields['shipping_company']   = $user['us_company'];
+                if (empty($cart->fields['shipping_phone']))     $cart->fields['shipping_phone']     = $user['us_phone'];
+                if (empty($cart->fields['shipping_address1']))  $cart->fields['shipping_address1']  = $user['us_address1'];
+                if (empty($cart->fields['shipping_address2']))  $cart->fields['shipping_address2']  = $user['us_address2'];
+                if (empty($cart->fields['shipping_suburb']))    $cart->fields['shipping_suburb']    = $user['us_suburb'];
+                if (empty($cart->fields['shipping_city']))      $cart->fields['shipping_city']      = $user['us_city'];
+                if (empty($cart->fields['shipping_state']))     $cart->fields['shipping_state']     = $user['us_state'];
+                if (empty($cart->fields['shipping_postcode']))  $cart->fields['shipping_postcode']  = $user['us_postcode'];
+                if (empty($cart->fields['shipping_country']))   $cart->fields['shipping_country']   = $user['us_country'];
             }
         }
 
