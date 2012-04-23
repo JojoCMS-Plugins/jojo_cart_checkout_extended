@@ -29,14 +29,13 @@
         {if $OPTIONS.cart_billing == 'yes'}{include file="jojo_cart_checkout_billing.tpl"}{/if}
         {if $OPTIONS.cart_billing_first=='yes'}{include file="jojo_cart_checkout_shipping.tpl"}{/if}
 
-{*
-disabled as this doesn't appear to work
+
 {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
 <div style="float: left; width: 450px;">
             <h3>Save your details</h3>
             <label for="create_account">Create account</label>
             <div class="form-field">
-                <label><input type="checkbox" name="create_account" id="create_account" value="1" /> Create a user account to speed up ordering next time?</label><br />
+                <label><input type="checkbox" name="create_account" id="create_account" value="1"{if $smarty.post.create_account == 1} checked="checked"{/if} /> Create a user account to speed up ordering next time?</label><br />
             </div>
             <div id="register" style="clear:left">
                     <label for="username">User name</label>
@@ -47,11 +46,14 @@ disabled as this doesn't appear to work
 
                     <label for="password_confirm">Confirm Password</label>
                     <input type="password" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" /> *<br />
+                    
+                    <label for="remember_password">Remember password</label>
+                    <input type="checkbox" name="remember_password" id="remember_password" value="1" {if $smarty.post.remember_password == 1} checked="checked"{/if} /> (on this computer)<br />
                 </div>
                 <script type="text/javascript">
                 /*<![CDATA[*/
                 {literal}$(document).ready(function(){
-                  $('#register').hide();
+                  {/literal}{if $smarty.post.create_account == 1}//{/if}{literal}$('#register').hide();
                   $('#create_account').click(function(){
                     if ($("#create_account:checked").val()) {
                       $('#register').show('normal');
@@ -64,7 +66,7 @@ disabled as this doesn't appear to work
                 </script>
 </div>
 {/if}
-*}
+
         <br style="clear: both" />
         <input type="submit" name="continue" value="Continue"/>
     </div>

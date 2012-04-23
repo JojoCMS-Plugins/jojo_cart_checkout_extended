@@ -172,16 +172,37 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $errors[] = 'Please enter a valid email address.';
         }
         
-        /*
+        
         if (Jojo::getOption('cart_create_account', 'no') == 'yes') {
-            if (!empty($cart->fields['username']) && empty($cart->fields['password'])) {
+            if (empty($cart->fields['username'])) {
+                $errors[] = 'Please enter a username.';
+            } else {
+                /* Check user does not already exist */
+                $user = Jojo::selectRow("SELECT userid FROM {user} WHERE us_login = ? AND us_login != ''", array($cart->fields['username']));
+                if (count($user)) {
+                    $errors[] = 'The username "' . $cart->fields['username'] . '" is already taken';
+                }
+            }
+            if (empty($cart->fields['password'])) {
                 $errors[] = 'Please enter a password.';
+            } elseif (strlen($cart->fields['password']) < 6) {
+                $errors[] = 'Passwords must be a minimum of 6 characters.';
             }
             if (!empty($cart->fields['password']) && ($cart->fields['password'] != $cart->fields['confirm_password'])) {
                 $errors[] = 'Please ensure the passwords match.';
             }
+            
+            
+            /* Check email address is not already in the system unless the options allow duplicate emails */
+            if (Jojo::getOption('users_require_unique_email', 'yes') == 'yes') {
+                $user = Jojo::selectRow("SELECT userid FROM {user} WHERE us_email = ? AND us_email != ''", array($cart->fields['billing_email']));
+                if (count($user)) {
+                    $errors[] = 'The email "' . $cart->fields['username'] . '" is already in use by another user';
+                }
+            }
+            
         }
-        */
+        
 
         $name= $cart->fields['shipping_firstname'].' '.$cart->fields['shipping_lastname'];
         if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';
@@ -201,6 +222,60 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $content['seotitle']   = 'Shipping and Billing Information';
             $content['content']    = $smarty->fetch('jojo_cart_checkout_extended.tpl');
             return $content;
+        }
+        
+        /* create the user account */
+        if (Jojo::getOption('cart_create_account', 'no') == 'yes') {          
+            $create_account_fields = array(//'us_approvecode' => Jojo::randomString(16), //these fields require the jojo_community plugin 
+                                           //'us_deletecode'  => Jojo::randomString(16),
+                                           'us_login'       => $cart->fields['username'],
+                                           'us_password'    => sha1($cart->fields['password']),
+                                           'us_firstname'   => $cart->fields['billing_firstname'],
+                                           'us_lastname'    => $cart->fields['billing_lastname'],
+                                           'us_email'       => $cart->fields['billing_email'],
+                                           'us_phone'       => $cart->fields['billing_phone'],
+                                           'us_address1'    => $cart->fields['billing_address1'],
+                                           'us_address2'    => $cart->fields['billing_address2'],
+                                           'us_suburb'      => $cart->fields['billing_suburb'],
+                                           'us_city'        => $cart->fields['billing_city'],
+                                           'us_state'       => $cart->fields['billing_state'],
+                                           'us_postcode'    => $cart->fields['billing_postcode'],
+                                           'us_country'     => $cart->fields['billing_country'],
+                                          );
+            $create_account_fields = Jojo::applyFilter('jojo_cart_checkout:create_account_fields', $create_account_fields, $cart);
+            $query = "INSERT INTO {user} SET ";
+            $values = array();
+            foreach ($create_account_fields as $f => $v) {
+                $query .= " `".$f."`=?,";
+                $values[] = $v;
+            }
+            $query = rtrim($query, ',');
+            $userid = Jojo::insertQuery($query, $values);
+            
+            $defaultgroup = Jojo::getOption('defaultgroup');
+            if ($defaultgroup != '') {
+                Jojo::insertQuery("INSERT INTO {usergroup_membership} (userid, groupid) VALUES (?, ?)", array($userid, $defaultgroup));
+            }
+            
+            /* log them in */
+            $_USERID = $userid;
+            $_SESSION['userid'] = $_USERID;
+
+            $_USERGROUPS = array('everyone');
+            $groups = Jojo::selectQuery("SELECT * FROM {usergroup_membership} WHERE userid = ?", $_USERID);
+            foreach ($groups as $group) {
+                $_USERGROUPS[] = $group['groupid'];
+            }
+            $_SESSION['username'] = $cart->fields['username'];
+            
+            /* save the 'remember password' cookie */
+            $remember_password = Jojo::getFormData('remember_password', false);
+            if ($remember_password) {
+                $code = Jojo::randomstring(16);
+                setcookie("jojoR", base64_encode($_USERID . ':' . $code), time() + (60 * 60 * 24 * 365), '/' . _SITEFOLDER);
+                $values = array((int)$_USERID, $code, time());
+                $res = Jojo::insertQuery("INSERT INTO {auth_token} SET userid = ?, token = ?, lastused = ?", array($values));
+            }
         }
 
         /* Set the shipping region in the cart */
