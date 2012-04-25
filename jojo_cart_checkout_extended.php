@@ -197,7 +197,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             if (Jojo::getOption('users_require_unique_email', 'yes') == 'yes') {
                 $user = Jojo::selectRow("SELECT userid FROM {user} WHERE us_email = ? AND us_email != ''", array($cart->fields['billing_email']));
                 if (count($user)) {
-                    $errors[] = 'The email "' . $cart->fields['email'] . '" is already in use by another user - if this is you, please <a href="login/cart/checkout/" rel="nofollow">login</a>.';
+                    $errors[] = 'The email "' . $cart->fields['billing_email'] . '" is already in use by another user - if this is you, please <a href="login/cart/checkout/" rel="nofollow">login</a>.';
                 }
             }
             
