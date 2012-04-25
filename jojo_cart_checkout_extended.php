@@ -122,7 +122,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             'shipping_lastname', 'shipping_email', 'shipping_phone', 'shipping_address1',
             'shipping_address2', 'shipping_suburb', 'shipping_city',
             'shipping_state', 'shipping_postcode', 'shipping_country', 'shipping_special',
-            'username', 'password', 'confirm_password');
+            'username', 'password', 'confirm_password', 'create_account');
         $fields = Jojo::applyFilter('jojo_cart_checkout:get_fields', $fields);
         foreach($fields as $name) {
             //$cart->fields[$name] = Jojo::getFormData($name, false);
@@ -173,7 +173,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         }
         
         
-        if (Jojo::getOption('cart_create_account', 'no') == 'yes') {
+        if ((Jojo::getOption('cart_create_account', 'no') == 'yes') && ($cart->fields['create_account'] == 1)) {
             if (empty($cart->fields['username'])) {
                 $errors[] = 'Please enter a username.';
             } else {
@@ -225,7 +225,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         }
         
         /* create the user account */
-        if (Jojo::getOption('cart_create_account', 'no') == 'yes') {          
+        if ((Jojo::getOption('cart_create_account', 'no') == 'yes') && ($cart->fields['create_account'] == 1)) {  
             $create_account_fields = array(//'us_approvecode' => Jojo::randomString(16), //these fields require the jojo_community plugin 
                                            //'us_deletecode'  => Jojo::randomString(16),
                                            'us_login'       => $cart->fields['username'],
