@@ -14,9 +14,9 @@ Shipping Address
 {/if}{if $fields.shipping_postcode}  {$fields.shipping_postcode}
 {/if}{if $fields.shipping_country}{foreach from=$countries item=c}{if $c.code|strtoupper==$fields.shipping_country}  {$c.name}{/if}{/foreach}{/if}
 
-
-{if $fields.shipping_special}Special instructions: {$fields.shipping_special}
-{/if}{jojoHook hook="jojo_cart_extra_fields_email"}
+{if $fields.shipping_special}
+Special instructions: {$fields.shipping_special}
+{/if}{jojoHook hook="jojo_cart_extra_fields_email"}{jojoHook hook="jojo_cart_extra_fields_email_shipping"}
 
 {if $OPTIONS.cart_billing == 'yes'}
 Billing Address
@@ -29,6 +29,7 @@ Billing Address
 {/if}{if $fields.billing_city}  {$fields.billing_city}
 {/if}{if $fields.billing_state}  {$fields.billing_state}
 {/if}{if $fields.billing_postcode}  {$fields.billing_postcode}
-{/if}{if $fields.billing_country}{foreach from=$countries item=c}{if $c.code|strtoupper==$fields.billing_country}  {$c.name}{/if}{/foreach}{/if}
+{/if}{if $fields.billing_country}{foreach from=$countries item=c}{if $c.code|strtoupper==$fields.billing_country}  {$c.name}{/if}{/foreach}
+{/if}{jojoHook hook="jojo_cart_extra_fields_email_billing"}
 
 {/if}
