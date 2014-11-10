@@ -101,6 +101,35 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         /* filter to allow modification of fields data - such as auto-population of certain fields */
         $cart->fields = Jojo::applyFilter('jojo_cart_checkout:populate_fields', $cart->fields);
 
+        /* Check required fields */
+        $requiredFields = array(
+            'shipping_firstname' => 'Please enter your first name.',
+            'shipping_lastname'  => 'Please enter your last name.',
+            'shipping_address1'  => 'Please enter your shipping address.',
+            'shipping_city'      => 'Please enter your shipping city.',
+            'shipping_postcode'  => 'Please enter your post code.',
+            'shipping_country'   => 'Please select your country.',
+        );
+
+        if (Jojo::getOption('cart_billing', 'yes') == 'yes') {
+          $requiredFields = $requiredFields + array(
+              'billing_firstname'  => 'Please enter your first name.',
+              'billing_lastname'   => 'Please enter your last name.',
+              'billing_email'      => 'Please enter your email address.',
+              'billing_address1'   => 'Please enter your billing address.',
+              'billing_city'       => 'Please enter your billing city.',
+              'billing_postcode'   => 'Please enter your post code.',
+              'billing_country'    => 'Please select your country.',
+          );
+        }
+
+        if (Jojo::getOption('cart_phone_required', 'no') == 'yes') {
+            $requiredFields['shipping_phone'] = 'Please enter your shipping phone number.';
+            if (Jojo::getOption('cart_billing', 'yes') == 'yes')  $requiredFields['billing_phone'] = 'Please enter your billing phone number.';
+        }
+        $requiredFields = Jojo::applyFilter('jojo_cart_checkout:required_fields', $requiredFields);
+        $smarty->assign('required_fields', $requiredFields);
+
         /* Continue button not pressed */
         if (!Jojo::getFormData('continue')) {
             $content = array();
@@ -135,33 +164,6 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
 
         call_user_func(array(Jojo_Cart_Class, 'saveCart'));
 
-        /* Check for required fields */
-        $requiredFields = array(
-            'shipping_firstname' => 'Please enter your first name.',
-            'shipping_lastname'  => 'Please enter your last name.',
-            'shipping_address1'  => 'Please enter your shipping address.',
-            'shipping_city'      => 'Please enter your shipping city.',
-            'shipping_postcode'  => 'Please enter your post code.',
-            'shipping_country'   => 'Please select your country.',
-        );
-
-        if (Jojo::getOption('cart_billing', 'yes') == 'yes') {
-          $requiredFields = $requiredFields + array(
-              'billing_firstname'  => 'Please enter your first name.',
-              'billing_lastname'   => 'Please enter your last name.',
-              'billing_email'      => 'Please enter your email address.',
-              'billing_address1'   => 'Please enter your billing address.',
-              'billing_city'       => 'Please enter your billing city.',
-              'billing_postcode'   => 'Please enter your post code.',
-              'billing_country'    => 'Please select your country.',
-          );
-        }
-
-        if (Jojo::getOption('cart_phone_required', 'no') == 'yes') {
-            $requiredFields['shipping_phone'] = 'Please enter your shipping phone number.';
-            if (Jojo::getOption('cart_billing', 'yes') == 'yes')  $requiredFields['billing_phone'] = 'Please enter your billing phone number.';
-        }
-        $requiredFields = Jojo::applyFilter('jojo_cart_checkout:required_fields', $requiredFields);
         $errors = array();
         foreach($requiredFields as $name => $errorMsg) {
             if (empty($cart->fields[$name])) {
@@ -211,7 +213,6 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
             $name= $cart->fields['billing_firstname'].' '.$cart->fields['billing_lastname'];
             if(strlen($name)>35) $errors[] = 'Please a firstname/lastname combination with max 35 characters please';
         }
-        $smarty->assign('required_fields', $requiredFields);
 
         if (count($errors)) {
             /* There were errors, let the user fix them */

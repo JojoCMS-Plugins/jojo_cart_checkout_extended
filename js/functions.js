@@ -4,10 +4,15 @@ function updateCountry(country, section) {
     }
     $.getJSON(secureurl + '/json/jojo_cart_country_hasstates.php', {c: country}, function(data) {
             if (data) {
+                $('#' + section + '_state').removeAttr('disabled');
                 updateCountryStates(country, section);
             } else {
-                updateCountryCities(country, section);
-                $('#' + section + '_state').attr('disabled', true);
+                $('#' + section + '_state').attr('disabled', 'disabled');
+                $.getJSON(siteurl + '/json/jojo_cart_country_hascities.php', {c: country}, function(data) {
+                   if (data) {
+                        updateCountryCities(country, section);
+                    }
+                });
             }
     });
 }
@@ -17,8 +22,10 @@ function updateCountryCities(country, section) {
             target = $('#' + section + '_city');
             if (!data.length) {
                 var textbox = document.createElement('input');
-                $(textbox).attr('id', target.attr('id'));
+                $(textbox).prop('type', 'text');
+               $(textbox).attr('id', target.attr('id'));
                 $(textbox).attr('name', target.attr('name'));
+                $(textbox).addClass('form-control input text');
                 if (target.val()) {
                     $(textbox).val(target.val());
                 }
@@ -27,6 +34,7 @@ function updateCountryCities(country, section) {
                 var selectbox = document.createElement('select');
                 $(selectbox).attr('id', target.attr('id'));
                 $(selectbox).attr('name', target.attr('name'));
+                $(selectbox).addClass('form-control select');
                 option = new Option('', '');
                 selectbox.options.add(option);
                 for (i = 0; i < data.length; i++) {
@@ -49,8 +57,10 @@ function updateStateCities(country, state, section) {
             target = $('#' + section + '_city');
             if (!data.length) {
                 var textbox = document.createElement('input');
+                $(textbox).prop('type', 'text');
                 $(textbox).attr('id', target.attr('id'));
                 $(textbox).attr('name', target.attr('name'));
+                $(textbox).addClass('form-control input text');
                 if (target.val()) {
                     $(textbox).val(target.val());
                 }
@@ -59,6 +69,7 @@ function updateStateCities(country, state, section) {
                 var selectbox = document.createElement('select');
                 $(selectbox).attr('id', target.attr('id'));
                 $(selectbox).attr('name', target.attr('name'));
+                $(selectbox).addClass('form-control select');
                 option = new Option('', '');
                 selectbox.options.add(option);
                 for (i = 0; i < data.length; i++) {
@@ -78,8 +89,10 @@ function updateCountryStates(country, section) {
             target = $('#' + section + '_state');
             if (!data.length) {
                 var textbox = document.createElement('input');
-                $(textbox).attr('id', target.attr('id'));
+                $(textbox).prop('type', 'text');
+               $(textbox).attr('id', target.attr('id'));
                 $(textbox).attr('name', target.attr('name'));
+                $(textbox).addClass('form-control input text');
                 if (target[0].tagName == 'INPUT' && target.val()) {
                     $(textbox).val(target.val());
                 }
@@ -88,6 +101,7 @@ function updateCountryStates(country, section) {
                 var selectbox = document.createElement('select');
                 $(selectbox).attr('id', target.attr('id'));
                 $(selectbox).attr('name', target.attr('name'));
+                $(selectbox).addClass('form-control select');
                 option = new Option('', '');
                 selectbox.options.add(option);
                 for (i = 0; i < data.length; i++) {
@@ -104,8 +118,10 @@ function updateCountryStates(country, section) {
 
             target = $('#' + section + '_city');
             var textbox = document.createElement('input');
+            $(textbox).prop('type', 'text');
             $(textbox).attr('id', target.attr('id'));
             $(textbox).attr('name', target.attr('name'));
+            $(textbox).addClass('form-control input text');
             if (target.val()) {
                 $(textbox).val(target.val());
             }
