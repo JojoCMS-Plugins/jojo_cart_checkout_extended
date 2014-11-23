@@ -1,5 +1,5 @@
 <fieldset id="billing-details">
-    <legend>Billing Address{if $OPTIONS.cart_billing_first!='yes'} &nbsp;<a class="button btn btn-small" href="#" onclick="copyShippingToBilling(); return false;">Copy from Shipping Address</a>{/if}</legend>
+    <legend>Billing Address{if $OPTIONS.cart_billing_first!='yes'} &nbsp;<a class="button btn btn-default btn-sm" href="#" onclick="copyShippingToBilling(); return false;">Copy from Shipping Address</a>{/if}</legend>
 
     <div class="form-fieldset form-group{if $errors.billing_firstname} has-error{/if}">
         <label for="billing_firstname">First name<span class="required">*</span></label>
