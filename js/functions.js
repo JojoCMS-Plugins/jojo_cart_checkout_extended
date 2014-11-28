@@ -1,3 +1,12 @@
+$(document).ready(function(){
+    if ($('#billing_country').val()) {
+        updateCountry($('#billing_country').val(),  'billing');
+    }
+    if ($('#shipping_country').val()) {
+        updateCountry($('#shipping_country').val(), 'shipping');
+    }
+});
+
 function updateCountry(country, section) {
     if (!country) {
         return;

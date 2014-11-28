@@ -72,11 +72,4 @@
     </div>
 </form>
 </div>
-
-<script type='text/javascript'>
-/*<![CDATA[*/
-    updateCountry($('#billing_country').val(),  'billing');
-    updateCountry($('#shipping_country').val(), 'shipping');
-/*]]>*/
-</script>
 {/if}
