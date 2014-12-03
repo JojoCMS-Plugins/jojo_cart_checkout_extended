@@ -1,5 +1,5 @@
 ###Customer Details
-**Shipping Address**
+**Shipping Address**  
 {$fields.shipping_firstname} {$fields.shipping_lastname}  
 {if $fields.shipping_phone}  {$fields.shipping_phone}  
 {/if}{if $fields.shipping_company}  {$fields.shipping_company}  
@@ -13,7 +13,7 @@
 Special instructions: {$fields.shipping_special}  
 {/if}{jojoHook hook="jojo_cart_extra_fields_email"}{jojoHook hook="jojo_cart_extra_fields_email_shipping"}
 
-{if $OPTIONS.cart_billing == 'yes'}**Billing Address**
+{if $OPTIONS.cart_billing == 'yes'}**Billing Address**  
 {$fields.billing_firstname} {$fields.billing_lastname}  
 {if $fields.billing_email}{$fields.billing_email}  
 {/if}{if $fields.billing_phone}Ph: {$fields.billing_phone}  

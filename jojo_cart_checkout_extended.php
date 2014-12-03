@@ -20,7 +20,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
 
     function _getContent()
     {
-        global $smarty, $_USERID;
+        global $page, $smarty, $_USERID;
 
         /* Get the cart array */
         $cart = call_user_func(array(Jojo_Cart_Class, 'getCart'));
@@ -134,9 +134,7 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         if (!Jojo::getFormData('continue')) {
             $content = array();
             $smarty->assign('fields', $cart->fields);
-            $content['title']      = 'Shipping and Billing Information';
-            $content['seotitle']   = 'Shipping and Billing Information';
-            $content['content']    = $smarty->fetch('jojo_cart_checkout_extended.tpl');
+            $content['content']    = $page->page['pg_body'] . $smarty->fetch('jojo_cart_checkout_extended.tpl');
             return $content;
         }
         
