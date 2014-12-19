@@ -68,11 +68,12 @@
         <label for="shipping_postcode">Postcode{if $required_fields.shipping_postcode}<span class="required">*</span>{/if}</label>
         <input type="text" class="form-control input text{if $required_fields.shipping_postcode} required{/if}" size="10" name="shipping_postcode" id="shipping_postcode" value="{if $fields.shipping_postcode}{$fields.shipping_postcode}{/if}" />
     </div>
-
+{if $OPTIONS.cart_special == 'yes'}
     <div class="form-fieldset form-group{if $errors.shipping_special} has-error{/if}">
-{if $OPTIONS.cart_special == 'yes'}<label for="shipping_special">Special Instructions</label>
+        <label for="shipping_special">Special Instructions</label>
         <textarea class="form-control input text" rows="4" cols="40" name="shipping_special" id="shipping_special">{if $fields.shipping_special}{$fields.shipping_special}{/if}</textarea>
     </div>
+{/if}
 {jojoHook hook="jojo_cart_extra_fields"}{* deprecated: please use the shipping / billing hooks instead *}
 {jojoHook hook="jojo_cart_extra_fields_shipping"}
 </fieldset>

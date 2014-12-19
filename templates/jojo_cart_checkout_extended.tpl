@@ -25,49 +25,35 @@
     {if $OPTIONS.cart_billing_first!='yes'}{include file="jojo_cart_checkout_shipping.tpl"}{/if}
     {if $OPTIONS.cart_billing == 'yes'}{include file="jojo_cart_checkout_billing.tpl"}{/if}
     {if $OPTIONS.cart_billing_first=='yes'}{include file="jojo_cart_checkout_shipping.tpl"}{/if}
-
     {if !$fields.userid && !($OPTIONS.cart_create_account =='no')}
-    <fieldset id="register">
+    <fieldset id="register" >
         <legend>Save your details</legend>
          <div class="checkbox">
                 <label for="create_account"><input type="checkbox" name="create_account" id="create_account" value="1"{if $smarty.post.create_account == 1} checked="checked"{/if} /> Create a user account to speed up ordering next time?</label>
         </div>
-        <div class="form-fieldset form-group">
-            <label for="username">User name<span class="required">*</span></label>
-            <input type="text" class="form-control input text required" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" />
-        </div>
-         <div class="form-fieldset form-group">
-           <label for="password">Password<span class="required">*</span></label>
-            <input type="password" class="form-control input text required" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
-        </div>
-         <div class="form-fieldset form-group">
-            <label for="password_confirm">Confirm Password<span class="required">*</span></label>
-            <input type="password" class="form-control input text required" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
-        </div>
-         <div class="form-fieldset form-group">
-             <div class="checkbox  form-group">
-                <label for="remember_password"><input type="checkbox" name="remember_password" id="remember_password" value="1" {if $smarty.post.remember_password == 1} checked="checked"{/if} />Remember password (on this computer)</label>
-            <div>
+        <div id="registerform"{if $smarty.post.create_account != 1} style="display:none;"{/if}>
+            <div class="form-fieldset form-group">
+                <label for="username">User name<span class="required">*</span></label>
+                <input type="text" class="form-control input text" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" />
+            </div>
+             <div class="form-fieldset form-group">
+               <label for="password">Password<span class="required">*</span></label>
+                <input type="password" class="form-control input text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
+            </div>
+             <div class="form-fieldset form-group">
+                <label for="password_confirm">Confirm Password<span class="required">*</span></label>
+                <input type="password" class="form-control input text" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
+            </div>
+             <div class="form-fieldset form-group">
+                 <div class="checkbox  form-group">
+                    <label for="remember_password"><input type="checkbox" name="remember_password" id="remember_password" value="1" {if $smarty.post.remember_password == 1} checked="checked"{/if} />Remember password (on this computer)</label>
+                <div>
+            </div>
         </div>
     </fieldset>
-    <script type="text/javascript">
-    /*<![CDATA[*/
-    {literal}$(document).ready(function(){
-      {/literal}{if $smarty.post.create_account == 1}//{/if}{literal}$('#register').hide();
-      $('#create_account').click(function(){
-        if ($("#create_account:checked").val()) {
-          $('#register').show('normal');
-        } else {
-          $('#register').hide('normal');
-        }
-      });
-    });{/literal}
-    /*]]>*/
-    </script>
     {/if}
-    <br>
     <div class="form-group">
-        <label for="continue" class="control-label">&nbsp;</label>
+        <label for="continue" class="control-label"></label>
         <input type="submit" class="btn btn-primary" name="continue" value="Continue"/>
     </div>
 </form>
