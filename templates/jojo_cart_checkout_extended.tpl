@@ -34,15 +34,15 @@
         <div id="registerform"{if $smarty.post.create_account != 1} style="display:none;"{/if}>
             <div class="form-fieldset form-group">
                 <label for="username">User name<span class="required">*</span></label>
-                <input type="text" class="form-control input text" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" />
+                <input type="text" class="form-control input text{if $smarty.post.create_account == 1} required{/if}" size="10" name="username" id="username" value="{if $fields.username}{$fields.username}{/if}" />
             </div>
              <div class="form-fieldset form-group">
                <label for="password">Password<span class="required">*</span></label>
-                <input type="password" class="form-control input text" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
+                <input type="password" class="form-control input text{if $smarty.post.create_account == 1} required{/if}" size="10" name="password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
             </div>
              <div class="form-fieldset form-group">
                 <label for="password_confirm">Confirm Password<span class="required">*</span></label>
-                <input type="password" class="form-control input text" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
+                <input type="password" class="form-control input text{if $smarty.post.create_account == 1} required{/if}" size="10" name="confirm_password" id="password" value="{if $fields.password}{$fields.password}{/if}" />
             </div>
              <div class="form-fieldset form-group">
                  <div class="checkbox  form-group">

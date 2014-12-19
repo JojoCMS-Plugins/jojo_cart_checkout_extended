@@ -5,6 +5,11 @@ $(document).ready(function(){
     if ($('#shipping_country').val()) {
         updateCountry($('#shipping_country').val(), 'shipping');
     }
+    $('#create_account').click(function(){
+        $('#registerform').toggle();
+        $("#register input[type=text], #register input[type=password]").toggleClass('required');
+    });
+
 });
 
 function updateCountry(country, section) {
@@ -169,13 +174,3 @@ function copyBillingToShipping() {
     $('#shipping_country').val($('#billing_country').val());
     updateCountry($('#shipping_country').val(), 'shipping');
 }
-
-$('#create_account').click(function(){
-    if ($("#create_account:checked").val()) {
-        $('#registerform').show('normal');
-        $("#register input[type=text], #register input[type=password]").addClass('required');
-    } else {
-        $('#registerform').hide('normal');
-        $("#register input[type=text], #register input[type=password]").removeClass('required');
-    }
-});
