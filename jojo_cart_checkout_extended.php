@@ -28,13 +28,20 @@ class jojo_plugin_jojo_cart_checkout_extended extends JOJO_Plugin
         $smarty->assign('token', $cart->token);
 
         /* Build list of countries for UI */
-        $countries = array();
-        $countries[] = array('code' => '', 'name' => 'Select country');
-        $countries = array_merge($countries, Jojo::selectQuery("SELECT cc.countrycode as code, cc.name, 1 as special FROM {cart_country} as cc WHERE special = 'yes' ORDER BY name"));
-        if (count($countries) > 1) {
-            $countries[] = array('code' => '', 'name' => '----------');
+        $countries = Jojo::selectQuery("SELECT cc.countrycode as code, cc.name, cc.hasstates, 1 as special FROM {cart_country} as cc WHERE special = 'yes' ORDER BY name");
+         /* Limit shipping countries to favourited only */
+        if (Jojo::getOption('freight_favouritesonly', 'no')=='yes') {
+            $smarty->assign('shippingcountries', $countries);
+            if (count($countries)==1) {
+                /* Check if State field is needed if only one country */
+                $smarty->assign('shippingnostates', (boolean)(isset($countries[0]['hasstates']) && $countries[0]['hasstates'] == 'no'));
+            }
+        }
+        if ($countries) {
+            $countries = array_merge($countries, array(array('code' => '', 'name' => '----------')));
         }
         $countries = array_merge($countries, Jojo::selectQuery("SELECT cc.countrycode as code, cc.name, 0 as special FROM {cart_country} as cc ORDER BY name"));
+        $countries = array_merge(array(array('code' => '', 'name' => 'Select country')), $countries); 
         $smarty->assign('countries', $countries);
 
         /* Pre populate some fields when in test mode */
