@@ -10,6 +10,13 @@ $(document).ready(function(){
         $("#register input[type=text], #register input[type=password]").toggleClass('required');
     });
 
+    $('#billing_country').change(function(){
+        updateCountry($(this).val(),  'billing');
+    });
+    $('#shipping_country').change(function(){
+        updateCountry($(this).val(),  'shipping');
+    });
+
 });
 
 function updateCountry(country, section) {
@@ -22,12 +29,8 @@ function updateCountry(country, section) {
                 updateCountryStates(country, section);
             } else {
                 $('#' + section + '_state').attr('disabled', 'disabled');
-                $.getJSON(siteurl + '/json/jojo_cart_country_hascities.php', {c: country}, function(data) {
-                   if (data) {
-                        updateCountryCities(country, section);
-                    }
-                });
             }
+            updateCountryCities(country, section);
     });
 }
 
